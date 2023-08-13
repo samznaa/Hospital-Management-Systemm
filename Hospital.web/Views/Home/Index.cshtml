@@ -1,0 +1,65 @@
+﻿@model Hospital.dll.Model.HomePageCount
+
+<style>
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .counts-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .count-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        width: calc(25% - 20px);
+        height: 200px;
+        background-color: #f9f9f9;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    .count-label {
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    .doctor-box {
+        background-color: #ffc107;
+    }
+
+    .patient-box {
+        background-color: #28a745;
+    }
+</style>
+
+<h2>Counts:</h2>
+<div class="counts-container">
+    <a href="@Url.Action("Index", "Doctor")" class="count-box doctor-box">
+        <p class="count-label">Doctor</p>
+        <p>@Model.DoctorCount</p>
+    </a>
+
+    <a href="@Url.Action("Index", "Patient")" class="count-box patient-box">
+        <p class="count-label">Patient</p>
+        <p>@Model.PatientCount</p>
+    </a>
+
+    <a href="@Url.Action("Index", "Department")" class="count-box patient-box">
+        <p class="count-label">Department</p>
+        <p>@Model.DepartmentCount</p>
+    </a>
+
+
+</div>
+
+<main>
+    <div class="text-center">

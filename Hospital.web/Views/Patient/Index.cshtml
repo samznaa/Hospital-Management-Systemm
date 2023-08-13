@@ -1,0 +1,60 @@
+﻿@model Hospital.dll.Model.Patient
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Patient List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr style="background-color: black; color: white;">
+        <th>Patient Id</th>
+        <th>Patient Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Status</th>
+        <th>Address</th>
+        <th>Contact</th>
+        <th>DepartmentName</th>
+        <th>DoctorName</th>
+
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model.Patientlist)
+    {
+        <tr>
+            <td>@item.PatientId</td>
+            <td>@item.PatientName</td>
+            <td>@item.Gender</td>
+            <td>@item.Age</td>
+            <td>@item.Status</td>
+            <td>@item.Address</td>
+            <td>@item.Contact</td>
+            <td>@item.DepartmentId</td>
+            <td>@item.DoctorId</td>
+            <td>
+                <div style="display: flex; justify-content: flex-start;">
+                    <div style="border: 1px solid #ccc; margin-right: 5px; border-radius: 2px; background-color: lightblue; color: black; width: 30px">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PatientId })
+                    </div>
+                    <div style="border: 1px solid #ccc; margin-right: 5px; border-radius: 2px; background-color: lightgreen; color: black; width: 40px ">
+                        @Html.ActionLink("Details", "Details", new { id = item.PatientId })
+                    </div>
+                    <div style="border: 1px solid #ccc; margin-right: 5px; border-radius: 2px; background-color: lightcoral; color: black; width: 40px ">
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PatientId })
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,53 @@
+﻿@model List<Hospital.dll.Model.Appointment>
+@{
+    ViewBag.Title = "View Appointment";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <h2>Appointment</h2>
+    @if (Model != null && Model.Count > 0)
+    {
+        <table class="table">
+            <tr class="text-center bg-dark text-light">
+                <th>Patient Name</th>
+                <th>Doctor Name</th>
+                <th>Appointment Date</th>
+                <th>Note</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var appointment in Model)
+            {
+                <tr class="text-center bg-light text-dark">
+                    <td>@appointment.PatientId</td>
+                    <td>@appointment.DoctorId</td>
+                    <td>@appointment.AppointmentDate</td>
+                    <td>@appointment.Note</td>
+                    <td>
+                        @if (!appointment.IsConfirmed && !appointment.IsDeclined)
+                        {
+                            @Html.ActionLink("Confirm", "IsConfirmed", new { id = appointment.AppointmentId }, new { style = "color: blue; margin-right: 5px;" })
+                            @Html.ActionLink("Decline", "IsDeclined", new { id = appointment.AppointmentId }, new { style = "color: red; margin-right: 5px;" })
+                        }
+                        else if (appointment.IsConfirmed)
+                        {
+                            <span style="color: green;">Confirmed</span>
+                        }
+                        else
+                        {
+                            <span style="color: red;">Declined</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>No appointments found.</p>
+    }
+</body>
+</html>
